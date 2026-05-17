@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<!-- saved from url=(0043)file:///Users/ondrej/Downloads/index_1.html -->
-<html lang="cs"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maturita Angličtina — Kartičky &amp; Tahák</title>
 <style>
@@ -1569,7 +1569,7 @@ body {
 
 </style>
   <!-- Supabase cloud sync -->
-  <script src="./index_files/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     window.SUPABASE_URL = 'https://lbicxenjknzsjlofcodl.supabase.co';
     window.SUPABASE_KEY = 'sb_publishable_EqKSFag5DZn_CkiriEKYNQ_QXe-T6lZ';
@@ -1588,7 +1588,15 @@ body {
         <div id="authStep1">
           <h2>Přihlášení</h2>
           <p>Zadej svou přezdívku. Pokud ji ještě nemáš, vytvoříme ti nový profil chráněný heslem.</p>
-          <input type="text" id="usernameInput" placeholder="přezdívka (např. ondra)" maxlength="40" autocomplete="off" autocorrect="off" spellcheck="false">
+          <input
+            type="text"
+            id="usernameInput"
+            placeholder="přezdívka (např. ondra)"
+            maxlength="40"
+            autocomplete="off"
+            autocorrect="off"
+            spellcheck="false"
+          />
           <div class="username-warning" id="usernameWarning"></div>
           <button class="username-btn" onclick="checkUsername()" id="checkBtn">Pokračovat →</button>
           <p class="username-note">💡 Každý spolužák má vlastní přezdívku + heslo. Data jsou oddělená.</p>
@@ -1598,7 +1606,13 @@ body {
         <div id="authStep2Login" style="display: none;">
           <h2>🔐 Vítej zpět, <span id="welcomeName"></span></h2>
           <p>Zadej své heslo:</p>
-          <input type="password" id="passwordInput" placeholder="heslo" maxlength="100" autocomplete="current-password">
+          <input
+            type="password"
+            id="passwordInput"
+            placeholder="heslo"
+            maxlength="100"
+            autocomplete="current-password"
+          />
           <div class="username-warning" id="passwordWarning"></div>
           <button class="username-btn" onclick="loginUser()" id="loginBtn">Přihlásit se</button>
           <button class="username-btn-secondary" onclick="backToStep1()">← Zpět</button>
@@ -1608,8 +1622,21 @@ body {
         <div id="authStep2Register" style="display: none;">
           <h2>🆕 Vytvoř si nový profil</h2>
           <p>Přezdívka <strong id="newName"></strong> je volná. Nastav si heslo (alespoň 4 znaky):</p>
-          <input type="password" id="newPasswordInput" placeholder="nové heslo" maxlength="100" autocomplete="new-password">
-          <input type="password" id="newPasswordConfirm" placeholder="potvrď heslo" maxlength="100" autocomplete="new-password" style="margin-top: 8px;">
+          <input
+            type="password"
+            id="newPasswordInput"
+            placeholder="nové heslo"
+            maxlength="100"
+            autocomplete="new-password"
+          />
+          <input
+            type="password"
+            id="newPasswordConfirm"
+            placeholder="potvrď heslo"
+            maxlength="100"
+            autocomplete="new-password"
+            style="margin-top: 8px;"
+          />
           <div class="username-warning" id="newPasswordWarning"></div>
           <button class="username-btn" onclick="registerUser()" id="registerBtn">Vytvořit profil</button>
           <button class="username-btn-secondary" onclick="backToStep1()">← Zpět</button>
@@ -1619,7 +1646,7 @@ body {
     </div>
 
     <!-- Sync status indicator (top-right corner) -->
-    <div id="syncStatus" class="sync-status offline" title="Synchronizace s cloudem" data-msg="Klikni pro přihlášení"></div>
+    <div id="syncStatus" class="sync-status" title="Synchronizace s cloudem"></div>
 
 <div class="container">
   <header class="header">
@@ -1633,25 +1660,20 @@ body {
 
   <!-- MODE TABS -->
   <nav class="mode-nav">
-    <button class="mode-nav-btn active" id="navTabFlashcards" onclick="switchMode(&#39;flashcards&#39;)">
+    <button class="mode-nav-btn active" id="navTabFlashcards" onclick="switchMode('flashcards')">
       📇 Kartičky
     </button>
-    <button class="mode-nav-btn" id="navTabTahak" onclick="switchMode(&#39;tahak&#39;)">
+    <button class="mode-nav-btn" id="navTabTahak" onclick="switchMode('tahak')">
       📖 Tahák (otázky &amp; odpovědi)
     </button>
   </nav>
 
   <!-- HOME VIEW -->
-  <div id="homeView" style="display: block;">
+  <div id="homeView">
     <div class="welcome">
       <h2>👋 Ahoj Ondro!</h2>
       <p>Procvičuj slovní zásobu <strong>a fráze</strong> ke všem 20 maturitním tématům formou Anki kartiček. Každý balíček obsahuje slovíčka části A, odbornou slovní zásobu části B a <strong>vzorové fráze z modelových monologů</strong>. Klikni na kartu pro otočení, pak ohodnoť, jak dobře si ji pamatuješ. Pokrok se ukládá automaticky.</p>
-      <div class="stats-bar" id="globalStats">
-    <div class="stat-box"><div class="stat-num">1222</div><div class="stat-label">Celkem karet</div></div>
-    <div class="stat-box"><div class="stat-num">0</div><div class="stat-label">Naučených</div></div>
-    <div class="stat-box"><div class="stat-num">0%</div><div class="stat-label">Pokrok</div></div>
-    <div class="stat-box"><div class="stat-num">0</div><div class="stat-label">⭐ Označených</div></div>
-  </div>
+      <div class="stats-bar" id="globalStats"></div>
     </div>
 
     <input type="text" class="search-box" id="searchInput" placeholder="🔍 Hledej slovíčko nebo frázi..." oninput="handleSearch()">
@@ -1661,22 +1683,22 @@ body {
     <div class="mix-section">
       <div class="mix-section-title">🎲 Mix režimy — bez vázání na téma</div>
       <div class="mix-grid">
-        <div class="mix-card variant-all" onclick="openMix(&#39;all&#39;)">
+        <div class="mix-card variant-all" onclick="openMix('all')">
           <div class="mix-emoji">🎲</div>
           <div class="mix-title">Mix vše</div>
           <div class="mix-desc">Všechny karty náhodně promíchané</div>
         </div>
-        <div class="mix-card variant-phrases" onclick="openMix(&#39;phrases&#39;)">
+        <div class="mix-card variant-phrases" onclick="openMix('phrases')">
           <div class="mix-emoji">💡</div>
           <div class="mix-title">Mix frází</div>
           <div class="mix-desc">Jen fráze ze všech témat</div>
         </div>
-        <div class="mix-card variant-business" onclick="openMix(&#39;business&#39;)">
+        <div class="mix-card variant-business" onclick="openMix('business')">
           <div class="mix-emoji">💼</div>
           <div class="mix-title">Mix Business (B)</div>
           <div class="mix-desc">Odborná slovní zásoba ze všech témat</div>
         </div>
-        <div class="mix-card variant-starred" onclick="openMix(&#39;starred&#39;)">
+        <div class="mix-card variant-starred" onclick="openMix('starred')">
           <div class="mix-emoji">⭐</div>
           <div class="mix-title">Mix označených</div>
           <div class="mix-desc">Jen karty, které jsi si označil hvězdičkou</div>
@@ -1685,238 +1707,7 @@ body {
     </div>
 
     <div class="topics-section-title">📚 Témata maturity</div>
-    <div class="topic-grid" id="topicGrid">
-      <div class="topic-card" onclick="openTopic(1)">
-        <span class="topic-num">Téma 1</span>
-        <div class="topic-title">Housing &amp; Real Estate</div>
-        <div class="topic-title-cs">Bydlení &amp; Trh s nemovitostmi</div>
-        <div class="topic-meta">
-          <span>📚 67 karet</span>
-          <span>0/67 (0%)</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      </div>
-    
-      <div class="topic-card" onclick="openTopic(2)">
-        <span class="topic-num">Téma 2</span>
-        <div class="topic-title">Travel &amp; Travel Industry</div>
-        <div class="topic-title-cs">Cestování &amp; Cestovní ruch</div>
-        <div class="topic-meta">
-          <span>📚 64 karet</span>
-          <span>0/64 (0%)</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      </div>
-    
-      <div class="topic-card" onclick="openTopic(3)">
-        <span class="topic-num">Téma 3</span>
-        <div class="topic-title">Language &amp; Communication</div>
-        <div class="topic-title-cs">Jazyk &amp; Komunikace</div>
-        <div class="topic-meta">
-          <span>📚 60 karet</span>
-          <span>0/60 (0%)</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      </div>
-    
-      <div class="topic-card" onclick="openTopic(4)">
-        <span class="topic-num">Téma 4</span>
-        <div class="topic-title">Food &amp; Well-being</div>
-        <div class="topic-title-cs">Jídlo &amp; Duševní pohoda</div>
-        <div class="topic-meta">
-          <span>📚 65 karet</span>
-          <span>0/65 (0%)</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      </div>
-    
-      <div class="topic-card" onclick="openTopic(5)">
-        <span class="topic-num">Téma 5</span>
-        <div class="topic-title">Crime &amp; Crime's Impact on Economy</div>
-        <div class="topic-title-cs">Kriminalita &amp; Dopady na ekonomiku</div>
-        <div class="topic-meta">
-          <span>📚 60 karet</span>
-          <span>0/60 (0%)</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      </div>
-    
-      <div class="topic-card" onclick="openTopic(6)">
-        <span class="topic-num">Téma 6</span>
-        <div class="topic-title">Culture &amp; Economic Impact of Events</div>
-        <div class="topic-title-cs">Kultura &amp; Hospodářské dopady akcí</div>
-        <div class="topic-meta">
-          <span>📚 57 karet</span>
-          <span>0/57 (0%)</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      </div>
-    
-      <div class="topic-card" onclick="openTopic(7)">
-        <span class="topic-num">Téma 7</span>
-        <div class="topic-title">People &amp; Networking</div>
-        <div class="topic-title-cs">Lidé &amp; Mezilidské vztahy</div>
-        <div class="topic-meta">
-          <span>📚 57 karet</span>
-          <span>0/57 (0%)</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      </div>
-    
-      <div class="topic-card" onclick="openTopic(8)">
-        <span class="topic-num">Téma 8</span>
-        <div class="topic-title">Media &amp; Advertising</div>
-        <div class="topic-title-cs">Média &amp; Reklama</div>
-        <div class="topic-meta">
-          <span>📚 56 karet</span>
-          <span>0/56 (0%)</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      </div>
-    
-      <div class="topic-card" onclick="openTopic(9)">
-        <span class="topic-num">Téma 9</span>
-        <div class="topic-title">City &amp; Countryside</div>
-        <div class="topic-title-cs">Město &amp; Venkov / Podnikatelské příležitosti</div>
-        <div class="topic-meta">
-          <span>📚 56 karet</span>
-          <span>0/56 (0%)</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      </div>
-    
-      <div class="topic-card" onclick="openTopic(10)">
-        <span class="topic-num">Téma 10</span>
-        <div class="topic-title">Fashion &amp; Dress Codes</div>
-        <div class="topic-title-cs">Móda &amp; Dress code v podnikání</div>
-        <div class="topic-meta">
-          <span>📚 61 karet</span>
-          <span>0/61 (0%)</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      </div>
-    
-      <div class="topic-card" onclick="openTopic(11)">
-        <span class="topic-num">Téma 11</span>
-        <div class="topic-title">Shopping &amp; Behaviour</div>
-        <div class="topic-title-cs">Nakupování &amp; Nákupní chování</div>
-        <div class="topic-meta">
-          <span>📚 59 karet</span>
-          <span>0/59 (0%)</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      </div>
-    
-      <div class="topic-card" onclick="openTopic(12)">
-        <span class="topic-num">Téma 12</span>
-        <div class="topic-title">Jobs &amp; Job Market</div>
-        <div class="topic-title-cs">Práce &amp; Trh práce</div>
-        <div class="topic-meta">
-          <span>📚 67 karet</span>
-          <span>0/67 (0%)</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      </div>
-    
-      <div class="topic-card" onclick="openTopic(13)">
-        <span class="topic-num">Téma 13</span>
-        <div class="topic-title">Holidays &amp; Festivals</div>
-        <div class="topic-title-cs">Svátky &amp; Plánování dovolené</div>
-        <div class="topic-meta">
-          <span>📚 55 karet</span>
-          <span>0/55 (0%)</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      </div>
-    
-      <div class="topic-card" onclick="openTopic(14)">
-        <span class="topic-num">Téma 14</span>
-        <div class="topic-title">Services &amp; Service Industry</div>
-        <div class="topic-title-cs">Služby &amp; Sektor služeb</div>
-        <div class="topic-meta">
-          <span>📚 54 karet</span>
-          <span>0/54 (0%)</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      </div>
-    
-      <div class="topic-card" onclick="openTopic(15)">
-        <span class="topic-num">Téma 15</span>
-        <div class="topic-title">Sports &amp; Economic Impact of Sport</div>
-        <div class="topic-title-cs">Sport &amp; Vliv sportu na ekonomiku</div>
-        <div class="topic-meta">
-          <span>📚 59 karet</span>
-          <span>0/59 (0%)</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      </div>
-    
-      <div class="topic-card" onclick="openTopic(16)">
-        <span class="topic-num">Téma 16</span>
-        <div class="topic-title">Social Issues, Fundraising &amp; CSR</div>
-        <div class="topic-title-cs">Sociální problémy &amp; CSR</div>
-        <div class="topic-meta">
-          <span>📚 53 karet</span>
-          <span>0/53 (0%)</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      </div>
-    
-      <div class="topic-card" onclick="openTopic(17)">
-        <span class="topic-num">Téma 17</span>
-        <div class="topic-title">Science, Technology &amp; Tech in Business</div>
-        <div class="topic-title-cs">Věda &amp; Technika v podnikání</div>
-        <div class="topic-meta">
-          <span>📚 55 karet</span>
-          <span>0/55 (0%)</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      </div>
-    
-      <div class="topic-card" onclick="openTopic(18)">
-        <span class="topic-num">Téma 18</span>
-        <div class="topic-title">Education &amp; Its Importance in Business</div>
-        <div class="topic-title-cs">Vzdělávání &amp; Role vzdělávání v podnikání</div>
-        <div class="topic-meta">
-          <span>📚 59 karet</span>
-          <span>0/59 (0%)</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      </div>
-    
-      <div class="topic-card" onclick="openTopic(19)">
-        <span class="topic-num">Téma 19</span>
-        <div class="topic-title">Health &amp; Work-life Balance</div>
-        <div class="topic-title-cs">Zdraví &amp; Rovnováha mezi prací a životem</div>
-        <div class="topic-meta">
-          <span>📚 59 karet</span>
-          <span>0/59 (0%)</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      </div>
-    
-      <div class="topic-card" onclick="openTopic(20)">
-        <span class="topic-num">Téma 20</span>
-        <div class="topic-title">Environment &amp; Protection</div>
-        <div class="topic-title-cs">Životní prostředí &amp; Ochrana</div>
-        <div class="topic-meta">
-          <span>📚 59 karet</span>
-          <span>0/59 (0%)</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      </div>
-    
-      <div class="topic-card" onclick="openTopic(21)">
-        <span class="topic-num">✨ Fráze</span>
-        <div class="topic-title">Klíčové fráze pro maturitu</div>
-        <div class="topic-title-cs">Essential Exam Phrases</div>
-        <div class="topic-meta">
-          <span>📚 40 karet</span>
-          <span>0/40 (0%)</span>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
-      </div>
-    </div>
+    <div class="topic-grid" id="topicGrid"></div>
   </div>
 
   <!-- CARD VIEW -->
@@ -1930,9 +1721,9 @@ body {
     </div>
 
     <div class="mode-tabs">
-      <button class="mode-tab active" data-dir="enToCs" onclick="setDirection(&#39;enToCs&#39;)">🇬🇧 → 🇨🇿</button>
-      <button class="mode-tab" data-dir="csToEn" onclick="setDirection(&#39;csToEn&#39;)">🇨🇿 → 🇬🇧</button>
-      <button class="mode-tab" data-dir="mixed" onclick="setDirection(&#39;mixed&#39;)">🔀 Mix</button>
+      <button class="mode-tab active" data-dir="enToCs" onclick="setDirection('enToCs')">🇬🇧 → 🇨🇿</button>
+      <button class="mode-tab" data-dir="csToEn" onclick="setDirection('csToEn')">🇨🇿 → 🇬🇧</button>
+      <button class="mode-tab" data-dir="mixed" onclick="setDirection('mixed')">🔀 Mix</button>
     </div>
 
     <div class="flashcard-container">
@@ -4877,6 +4668,5 @@ window.addEventListener('load', async () => {
 });
 
 </script>
-
-
-</body></html>
+</body>
+</html>
